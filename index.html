@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti 💜</title>
+    
+    <meta property="og:title" content="Tengo algo que decirte... 💌" />
+    <meta property="og:description" content="He preparado una pequeña sorpresa para ti. Ábrelo cuando tengas un momento." />
+    <meta property="og:image" content="https://img.freepik.com/free-vector/gradient-purple-background_23-2149721752.jpg" />
+    <meta property="og:type" content="website" />
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💜</text></svg>">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Eliji tonos morados porque se lo mucho que te gusta y busque las paletas de colors del morado para dar el efecto que viste */
+            background: linear-gradient(-45deg, #a18cd1, #bc98f3, #e0c3fc, #8e54e9, #96c6ea);
+            background-size: 400% 400%;
+            animation: gradient 20s ease infinite;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* A mi me gusta las luciernagas y crei que tambien te podria gustar */
+        .firefly {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: fly 10s infinite ease-in-out;
+            pointer-events: none;
+            box-shadow: 0 0 10px #fff, 0 0 20px #bc98f3;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) translateX(50px); opacity: 0; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 480px;
+            width: 85%;
+            text-align: center;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 15px; font-weight: 600; text-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 35px; font-weight: 400; opacity: 0.95; }
+
+        .btn-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+        button {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary { background: #fff; color: #8e54e9; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .btn-outline { background: transparent; border: 2px solid #fff; color: #fff; }
+
+        button:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(255,255,255,0.4); }
+
+        .hidden { display: none; }
+        .visible { display: block; animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #whatsapp-btn { background-color: #25d366; color: white; margin-top: 25px; display: inline-flex; align-items: center; gap: 10px;}
+        .heart-icon { color: #e0c3fc; animation: heartbeat 1.5s infinite; display: inline-block; }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        for(let i=0; i<30; i++){
+            let div = document.createElement('div');
+            div.className = 'firefly';
+            div.style.left = Math.random() * 100 + 'vw';
+            div.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            div.style.animationDelay = (Math.random() * 5) + 's';
+            document.body.appendChild(div);
+        }
+    </script>
+
+    <div class="card visible" id="step1">
+        <h1>Hola...</h1>
+        <p>He estado valorando mucho el tiempo que pasamos hablando. Me gusta conocerte y siento que hay algo especial en nuestra conexión que me gustaría explorar más.</p>
+        <button class="btn-primary" onclick="showStep(2)">Continuar</button>
+    </div>
+
+    <div class="card hidden" id="step2">
+        <h1>¿Qué piensas tú?</h1>
+        <p>Me gustaría saber si sientes lo mismo para seguir conociéndonos desde otra perspectiva, o si prefieres que mantengamos las cosas como están.</p>
+        <div class="btn-group">
+            <button class="btn-primary" onclick="finish('si')">Sigamos conociéndonos</button>
+            <button class="btn-outline" onclick="finish('no')">Mejor como amigos</button>
+        </div>
+    </div>
+
+    <div class="card hidden" id="result">
+        <h1 id="res-title"></h1>
+        <p id="res-text"></p>
+        <div id="action-container"></div>
+    </div>
+
+    <script>
+        const miTelefono = "51982849880"; 
+
+
+        const audio = document.getElementById("bg-music");
+        audio.volume = 0.5;
+
+        function showStep(stepNumber) {
+            audio.play().catch(e => console.log("Audio espera click"));
+            document.getElementById('step1').classList.replace('visible', 'hidden');
+            document.getElementById('step' + stepNumber).classList.replace('hidden', 'visible');
+        }
+
+        function finish(choice) {
+            document.getElementById('step2').classList.replace('visible', 'hidden');
+            const resultCard = document.getElementById('result');
+            const title = document.getElementById('res-title');
+            const text = document.getElementById('res-text');
+            const container = document.getElementById('action-container');
+
+            resultCard.classList.replace('hidden', 'visible');
+            let mensajeWhatsApp = "";
+
+            if(choice === 'si') {
+                // Tambien puse confeti morado jajajaja (si es q me das el si)
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#a18cd1', '#bc98f3', '#ffffff', '#8e54e9']
+                });
+                setTimeout(() => {
+                    confetti({ particleCount: 100, spread: 100, origin: { y: 0.7 }, colors: ['#a18cd1', '#bc98f3', '#ffffff'] });
+                }, 500);
+
+                title.innerHTML = "¡Qué alegría! <span class='heart-icon'>❤</span>";
+                text.innerText = "Me hace muy feliz saber que estamos en la misma sintonía. Vamos a ver a dónde nos lleva esto.";
+                mensajeWhatsApp = "Holaa, ya vi tu mensaje... y la verdad es que yo también quiero que nos sigamos conociendo más ✨";
+            } else {
+                audio.pause();
+                title.innerText = "Gracias por tu honestidad";
+                text.innerText = "Aprecio mucho que me lo digas. Sigamos compartiendo como buenos amigos.";
+                mensajeWhatsApp = "Hola, gracias por la sinceridad. Me gustaría que sigamos siendo amigos.";
+            }
+
+            const btnWS = document.createElement("button");
+            btnWS.id = "whatsapp-btn";
+            btnWS.innerText = "Enviar respuesta";
+            btnWS.onclick = function() {
+                window.open(`https://wa.me/${miTelefono}?text=${encodeURIComponent(mensajeWhatsApp)}`, '_blank');
+            };
+            container.appendChild(btnWS);
+        }
+    </script>
+</body>
+</html>
